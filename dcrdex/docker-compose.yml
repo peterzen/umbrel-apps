@@ -11,11 +11,11 @@ services:
     restart: on-failure
     stop_grace_period: 1m
     ports:
-      - 5758:5758
+      - 5758
     volumes:
       # Uncomment to mount your data directories inside
       # the Docker container for storing persistent data
-      - ${APP_DATA_DIR}/dcrdex:/root/.dexc
+      - ${APP_DATA_DIR}/dcrdex:/dex/.dexc
       # - ${APP_DATA_DIR}/bar:/bar
 
       # Uncomment to mount LND's data directory as read-only
