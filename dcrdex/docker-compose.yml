@@ -13,4 +13,4 @@ services:
     ports:
       - 5758
     volumes:
-      - ${APP_DATA_DIR}/dcrdex:/dex/.dexc
+      - ${APP_DATA_DIR}:/dex/.dexc
