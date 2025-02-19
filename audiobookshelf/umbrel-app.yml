@@ -2,8 +2,8 @@ manifestVersion: 1
 id: audiobookshelf
 name: Audiobookshelf
 tagline: Audiobook and podcast server
-category: Media
-version: "2.2.11"
+category: media
+version: "2.19.3"
 port: 13378
 description: >-
   Features:
@@ -61,19 +61,13 @@ path: ""
 defaultUsername: ""
 defaultPassword: ""
 releaseNotes: >-
-  - Audiobookshelf now works with mobile apps (Android & iOS)
+  Fixed:
+    - Caching issues with libraries page
+    - End of chapter sleep timer not always triggering
+    - Server crash related to series sequence updates
+    - UI display issues with book cover images
 
 
-  Added: 
-    - M4B merge tool advanced options for ffmpeg encoder
-
-  Fixed: 
-    - Crash on adding podcast
-    - Dropdowns hidden in edit modals
-    - Get libraries API endpoint (bad response payload)
-
-  Changed: 
-    - API endpoint for author image allows raw=1 query to get raw image
-    - More strings translated: french, simplified Chinese, & German
+  Full release notes can be found at https://github.com/advplyr/audiobookshelf/releases
 submitter: Jasper
 submission: https://github.com/getumbrel/umbrel-apps/pull/302

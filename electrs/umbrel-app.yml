@@ -1,8 +1,8 @@
 manifestVersion: 1.1
 id: electrs
-category: Finance
+category: bitcoin
 name: Electrs
-version: "0.9.10"
+version: "0.10.7"
 tagline: A simple and efficient Electrum Server
 description: >
   Run your personal Electrum server and connect your Electrum-compatible wallet,
@@ -30,12 +30,9 @@ gallery:
 path: ""
 defaultPassword: ""
 releaseNotes: >
-  - Update dependencies (bitcoin, bitcoincore-rpc, tiny_http, serde_json, env_logger)
-  
-  - Fix mempool fee rate formatting (#761)
-  
-  - Allow configuring signet p2p magic (#762, #768)
-  
-  - Don't panic in case of an invalid block header height (#786)
+  This release adds support for testnet4 and prevents mempool syncing until bitcoind's mempool is fully loaded.
+
+
+  Full release notes are available at https://github.com/romanz/electrs/blob/master/RELEASE-NOTES.md#0107-nov-05-2024
 submitter: Umbrel
 submission: https://github.com/getumbrel/umbrel/pull/242

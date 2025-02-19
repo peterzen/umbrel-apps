@@ -7,7 +7,8 @@ services:
       APP_PORT: 8080
 
   node:
-    image: ghcr.io/vulpemventures/elements:0.21.0.2@sha256:60f082b13b366743ef3cd113cb20397b586fd7032c0eb9c0a2a242ebc528f537
+    image: ghcr.io/vulpemventures/elements:23.2.4@sha256:f4bb9af7f2278e6b6a7a6160f5f17eec28e85a2bf47ebbdc96d0e64caa582d16
+    user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m
     ports:
@@ -16,11 +17,12 @@ services:
     volumes:
       - ${APP_DATA_DIR}/data:/home/elements/.elements
     command:
-      - -listen=1
+      - -listen=0
       - -txindex=1
+      - -trim_headers=1
       # Current Elements Core requires >8GB of RAM to verify confidential proofs during IBD
       # We skip historical block verification for now, as we don't have a way to set the memory limit
-      - -assumevalid=d4046e2c27e32e8582af39e402528e5df6ede1e1dd3c551764699e02e50bbf1e
+      - -assumevalid=546a756e0238e8c5c2c8bee43f0395740519f96aaee5994d05ef6569ce2d0821
       - -validatepegin=1
       - -fallbackfee=0.000001
       # Attach to Bitcoin network
@@ -38,9 +40,12 @@ services:
       - -port=$APP_ELEMENTS_NODE_P2P_PORT
       - -blockfilterindex=1
       - -peerblockfilters=1
+      # Enable creating discounted CT on mainnet
+      - -creatediscountct=1
   
   web: 
     image: ghcr.io/tiero/elements-web:v0.0.3@sha256:b80dc0df2a4693668a97b874aad6d0a8d3239d03f4d05b4342600166934d0b87
+    user: "1000:1000"
     depends_on:
       - node
     restart: on-failure

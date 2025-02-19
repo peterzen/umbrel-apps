@@ -7,7 +7,7 @@ services:
       APP_PORT: 8055
   
   web:
-    image: niteshbalusu/lndboss:v2.17.1@sha256:6147ffe8870ee23784af83afe33b142fbe310166dff2042d386f30747b9d3d2f
+    image: niteshbalusu/lndboss:2.19.1@sha256:2dddce26e0ffcce049896cf8f813740f1c8cdea85d77b8445cafa296c4d7d7f9
     restart: on-failure
     stop_grace_period: 1m
     volumes:

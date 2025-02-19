@@ -1,8 +1,8 @@
 manifestVersion: 1
 id: circuitbreaker
-category: Lightning Node Management
+category: bitcoin
 name: Circuit Breaker
-version: "v0.4.1"
+version: "v0.5.1"
 tagline: Your Lightning Node's Firewall
 description: >-
   It allows nodes to protect themselves from being flooded with HTLCs. 
@@ -34,9 +34,19 @@ description: >-
   
   - queue_peer_initiated: This mode is also queuing HTLCs, but only those that come in through channels for which we aren't the channel open initiator. Not being the initiator means that the remote node is carrying the cost of a potential force-closure with stuck HTLCs. For channels that we initiated, the safer fail mode is used.
 
+  - blocked: This mode blocks all incoming traffic from a peer.
+
   WARNING: See queue mode warning.
 releaseNotes: >-
-  - Initial release on the Umbrel App Store
+  This release updates circuitbreaker to v0.5.1, which adds functionality to track granular HTLC forwarding information that is not saved by LND. This detailed information about HTLC forwards is also valuable for node operators looking to gain a more detailed understanding of their forwarding flow.
+
+
+  Specifically, it will persist timestamped forwarding history records for successful and failed HTLCs (LND only saves successful forwards, and does not keep timestamps). By default, circuitbreaker will only store 100,000 records so the maximum amount of space that these records will take is approximately 14MB.  This value can be changed using the `--fwdhistorylimit` flag, which allows zero values to disable the feature completely.
+
+
+  This feature was developed as part of the ongoing protocol work to research mitigation of channel jamming attacks against the network (https://lists.linuxfoundation.org/pipermail/lightning-dev/2023-August/004034.html). Volunteers interested in contributing to this research through running *local-only* analysis of the data circuitbreaker collects can express interest at https://docs.google.com/forms/d/e/1FAIpQLScm2xs4hNsrkI8UCBS4aTdO03YrmWT2X0-j6zXWpkZ7keKiUw/viewform?usp=sf_link or contact carla@chaincode.com for details.
+
+  The v0.5.1 release contains a bugfix for the v0.5.0 release which logs HTLCs that are forwarded along unknown outgoing channels rather than shutting down.
 developer: Joost Jager
 website: https://github.com/joostjager
 dependencies: 

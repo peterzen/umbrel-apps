@@ -1,6 +1,6 @@
 manifestVersion: 1
 id: bluewallet
-category: Wallet Servers
+category: bitcoin
 name: BlueWallet Lightning
 version: "1.4.1"
 tagline: Connect BlueWallet to your Lightning node
@@ -27,3 +27,4 @@ defaultUsername: ""
 defaultPassword: ""
 submitter: Aaron Dewes
 submission: https://github.com/getumbrel/umbrel/pull/566
+releaseNotes: ""

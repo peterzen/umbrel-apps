@@ -24,7 +24,9 @@ BITCOIN_ENV_FILE="${EXPORTS_APP_DIR}/.env"
 			"main")
 				BITCOIN_NETWORK="mainnet";;
 			"test")
-				BITCOIN_NETWORK="testnet";;
+				BITCOIN_NETWORK="testnet3";;
+			"testnet4")
+				BITCOIN_NETWORK="testnet4";;
 			"signet")
 				BITCOIN_NETWORK="signet";;
 			"regtest")
@@ -64,11 +66,16 @@ fi
 
 if [[ "${APP_BITCOIN_NETWORK}" == "mainnet" ]]; then
 	BITCOIN_CHAIN="main"
-elif [[ "${APP_BITCOIN_NETWORK}" == "testnet" ]]; then
+elif [[ "${APP_BITCOIN_NETWORK}" == "testnet3" ]]; then
 	BITCOIN_CHAIN="test"
 	# export APP_BITCOIN_RPC_PORT="18332"
 	# export APP_BITCOIN_P2P_PORT="18333"
 	# export APP_BITCOIN_TOR_PORT="18334"
+elif [[ "${APP_BITCOIN_NETWORK}" == "testnet4" ]]; then
+	BITCOIN_CHAIN="testnet4"
+	# export APP_BITCOIN_RPC_PORT="48332"
+	# export APP_BITCOIN_P2P_PORT="48333"
+	# export APP_BITCOIN_TOR_PORT="48334"
 elif [[ "${APP_BITCOIN_NETWORK}" == "signet" ]]; then
 	BITCOIN_CHAIN="signet"
 	# export APP_BITCOIN_RPC_PORT="38332"
@@ -94,6 +101,8 @@ BIN_ARGS=()
 # BIN_ARGS+=( "-bind=${APP_BITCOIN_NODE_IP}" )
 # BIN_ARGS+=( "-port=${APP_BITCOIN_P2P_PORT}" )
 # BIN_ARGS+=( "-rpcport=${APP_BITCOIN_RPC_PORT}" )
+# We hardcode the ports p2p and rpc ports to always be the same for all networks
+# As of v28.1, the default onion listening port will now be derived to be -port + 1 instead of being set to a fixed value (8334 on mainnet)
 BIN_ARGS+=( "-port=8333" )
 BIN_ARGS+=( "-rpcport=8332" )
 BIN_ARGS+=( "-rpcbind=${APP_BITCOIN_NODE_IP}" )
@@ -106,10 +115,16 @@ BIN_ARGS+=( "-zmqpubrawtx=tcp://0.0.0.0:${APP_BITCOIN_ZMQ_RAWTX_PORT}" )
 BIN_ARGS+=( "-zmqpubhashblock=tcp://0.0.0.0:${APP_BITCOIN_ZMQ_HASHBLOCK_PORT}" )
 BIN_ARGS+=( "-zmqpubsequence=tcp://0.0.0.0:${APP_BITCOIN_ZMQ_SEQUENCE_PORT}" )
 # BIN_ARGS+=( "-txindex=1" )
-BIN_ARGS+=( "-blockfilterindex=1" )
-BIN_ARGS+=( "-peerbloomfilters=1" )
-BIN_ARGS+=( "-peerblockfilters=1" )
-BIN_ARGS+=( "-rpcworkqueue=128" )
+# BIN_ARGS+=( "-blockfilterindex=1" )
+# BIN_ARGS+=( "-peerbloomfilters=1" )
+# BIN_ARGS+=( "-peerblockfilters=1" )
+# BIN_ARGS+=( "-rpcworkqueue=128" )
+# We can remove depratedrpc=create_bdb in a future update once Jam (JoinMarket) implements descriptor wallet support
+BIN_ARGS+=( "-deprecatedrpc=create_bdb" )
+
+# Required for LND compatibility. We can remove deprecatedrpc=warnings in a future update once LND releases a version with this fix: https://github.com/btcsuite/btcd/pull/2245
+# No longer required as of LND v0.18.4
+# BIN_ARGS+=( "-deprecatedrpc=warnings" )
 
 export APP_BITCOIN_COMMAND=$(IFS=" "; echo "${BIN_ARGS[@]}")
 
@@ -128,20 +143,24 @@ fi
 
 {
 	# Migrate settings for app updates differently to fresh installs
-	BITCOIN_INSTALL_EXISTS="false"
 	BITCOIN_DATA_DIR="${EXPORTS_APP_DIR}/data/bitcoin"
-	if [[ -d "${BITCOIN_DATA_DIR}/blocks" ]] || [[ -d "${BITCOIN_DATA_DIR}/testnet3/blocks" ]] || [[ -d "${BITCOIN_DATA_DIR}/regtest/blocks" ]]
+	IS_POST_ADVANCED_SETTINGS_INSTALL_FILE_PATH="${EXPORTS_APP_DIR}/data/app/IS_POST_ADVANCED_SETTINGS_INSTALL"
+
+	# If no blocks directory exists, we write out a file to indicate that this is a fresh install.
+	# This gets around the issue of the pre-start hook starting up the bitcoind container early for Tor HS creation
+	# and creating the blocks directory.
+	if [[ ! -d "${BITCOIN_DATA_DIR}/blocks" ]] && [[ ! -d "${BITCOIN_DATA_DIR}/testnet3/blocks" ]] && [[ ! -d "${BITCOIN_DATA_DIR}/regtest/blocks" ]]
 	then
-	BITCOIN_INSTALL_EXISTS="true"
+		touch "${IS_POST_ADVANCED_SETTINGS_INSTALL_FILE_PATH}"
 	fi
 
 	APP_CONFIG_EXISTS="false"
 	if [[ -f "${EXPORTS_APP_DIR}/data/app/bitcoin-config.json" ]]
 	then
-	APP_CONFIG_EXISTS="true"
+		APP_CONFIG_EXISTS="true"
 	fi
 
-	if [[ "${BITCOIN_INSTALL_EXISTS}" = "true" ]] && [[ "${APP_CONFIG_EXISTS}" = "false" ]]
+	if [[ ! -f "${IS_POST_ADVANCED_SETTINGS_INSTALL_FILE_PATH}" ]] && [[ "${APP_CONFIG_EXISTS}" = "false" ]]
 	then
 		# This app is not a fresh install, it's being updated, so preserve existing clearnet over Tor setting
 		export BITCOIN_INITIALIZE_WITH_CLEARNET_OVER_TOR="true"

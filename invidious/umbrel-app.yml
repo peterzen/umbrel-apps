@@ -1,8 +1,8 @@
 manifestVersion: 1
 id: invidious
-category: Social
+category: social
 name: Invidious
-version: "2022.11.22-5160d8ba"
+version: "2.20241110.0"
 tagline: Browse YouTube without tracking or ads
 description: >-
   An open source alternative front-end to YouTube
@@ -26,7 +26,7 @@ description: >-
    - Import watch history from NewPipe
    - Export subscriptions to NewPipe and Freetube
    - Import/Export Invidious user data
-  
+
   Technical features:
    - Embedded video support
    - Developer API
@@ -48,12 +48,19 @@ defaultUsername: ""
 defaultPassword: ""
 torOnly: false
 releaseNotes: >-
-  - QUIC Hotfix
+  This release addresses a critical issue that was causing channel pages to fail with a "Youtube API returned error 400" error.
+  Video playback issues still persist in this release.
 
-  - Custom Playlists
 
-  - New RPCs
-  
-  - Turkish, Chinese, and Japanese translations
+  Key improvements in this release:
+    - Fixed channel pages loading issues
+    - Added new video preload control option in preferences
+    - Shorts can now be sorted by newest, oldest, and popular
+    - Added support for new interface languages: Bulgarian, Welsh and Lombard
+    - Improved instance switching speed
+    - Fixed various playback and subscription issues
+
+
+  For full release notes, visit https://github.com/iv-org/invidious/releases
 submitter: Jasper
 submission: https://github.com/getumbrel/umbrel-apps/pull/129

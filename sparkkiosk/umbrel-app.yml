@@ -1,6 +1,6 @@
 manifestVersion: 1
 id: sparkkiosk
-category: Finance
+category: bitcoin
 name: Sparkkiosk
 version: "1.0.0-build-2"
 tagline: Minimal LNURL kiosk
@@ -27,3 +27,4 @@ deterministicPassword: true
 torOnly: false
 submitter: Jens Gertsen
 submission: https://github.com/getumbrel/umbrel/pull/1312
+releaseNotes: ""

@@ -1,8 +1,8 @@
 manifestVersion: 1
 id: urbit
-category: Networking
+category: networking
 name: Urbit
-version: "v1.20"
+version: "v3.1"
 tagline: Run Urbit on your Umbrel
 description: >-
   Urbit is a personal server for self-sovereign personal & networked
@@ -35,6 +35,13 @@ torOnly: false
 submitter: ~mopfel-winrux
 submission: https://github.com/getumbrel/umbrel/pull/1246
 releaseNotes: >-
-  Adds the %meme debug hint, resolves segfaults on macos-aarch64 builds, and adds a new --replay option.
+  `vere-v3.1` is a a minor runtime release with the following highlighted features:
+    - Rebinding eyre HTTP cache entires.
+    - The runtime now automatically tries to open the Ames port on a home network using the NAT-PMP protocol. This will improve connectivity on self-hosted setups.
+    - Restore the ctrl+z functionality to instantly force kill the urbit process.
+    - Plug memory leaks related to DNS queries. This has resulted in significant uptime improvements for select Urbit Foundation infrastructure ships.
+    - More reliable lockfile and replay error handling.
+    - Miscellaneous error message improvements.
   
-  Full release notes here: https://github.com/urbit/vere/releases/tag/vere-v1.20
+
+  Full release notes here: https://github.com/urbit/vere/releases/tag/vere-v3.1

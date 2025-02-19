@@ -1,6 +1,6 @@
 manifestVersion: 1
 id: libreddit
-category: Social
+category: social
 name: LibReddit
 version: "0.22.9"
 tagline: An alternative private front-end to Reddit
@@ -33,3 +33,4 @@ defaultUsername: ""
 defaultPassword: ""
 submitter: Jasper
 submission: https://github.com/getumbrel/umbrel-apps/pull/126
+releaseNotes: ""

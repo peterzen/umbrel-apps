@@ -1,6 +1,6 @@
 manifestVersion: 1
 id: satsale
-category: Finance
+category: bitcoin
 name: SatSale
 version: "0.1.13-build-1"
 tagline: Lightweight Bitcoin payment processor
@@ -35,3 +35,4 @@ path: /admin
 deterministicPassword: true
 submitter: Nick Farrow
 submission: https://github.com/getumbrel/umbrel/pull/1102
+releaseNotes: ""

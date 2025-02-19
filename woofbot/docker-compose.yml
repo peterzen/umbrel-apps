@@ -7,7 +7,8 @@ services:
       APP_PORT: 8080
   
   web:
-    image: woofbot/woofbot:v0.6.0@sha256:9a3b2035613958be9d2ba5f68d2c793fcc47bbd3cfddf4122b39d01d240b3504
+    image: woofbot/woofbot:v0.9.8@sha256:483076f0f364291d569025639ab502dc19c9c61d38931402955482e53cc3d950
+    user: 1000:1000
     restart: on-failure
     stop_grace_period: 1m
     environment:

@@ -1,6 +1,6 @@
 manifestVersion: 1
 id: ipfs-podcasting
-category: Files
+category: files
 name: IPFS Podcasting
 version: "0.6"
 tagline: Crowd-host podcasts over IPFS
@@ -20,7 +20,8 @@ gallery:
 - 1.jpg
 - 2.jpg
 - 3.jpg
-path: ''
-defaultPassword: ''
+path: ""
+defaultPassword: ""
 submitter: IPFSPodcasting.net
 submission: https://github.com/getumbrel/umbrel/pull/1356
+releaseNotes: ""

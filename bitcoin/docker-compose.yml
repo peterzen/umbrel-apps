@@ -7,7 +7,7 @@ services:
       APP_PORT: 3005
   
   server:
-    image: getumbrel/umbrel-bitcoin:v0.4.1@sha256:edc0567efeadf30128313308e2dadbfaa1f339ce666579646c3b9353834bb888
+    image: getumbrel/umbrel-bitcoin:v0.8.0@sha256:38465d8e3744223201993950954f0644841587d741e66d200d92b68ca719e6c1
     depends_on: [bitcoind]
     restart: on-failure
     volumes:
@@ -40,7 +40,8 @@ services:
         ipv4_address: $APP_BITCOIN_IP
 
   bitcoind:
-    image: getumbrel/bitcoind:v24.0.1@sha256:33ff257bd8a24b41bef5b5c3aea1e32ea6dcc08917e24122728687eb393814fa
+    image: getumbrel/bitcoind:v28.1@sha256:c565266ea302c9ab2fc490f04ff14e584210cde3d0d991b8309157e5dfae9e8d
+    user: "1000:1000"
     command: "${APP_BITCOIN_COMMAND}"
     restart: unless-stopped
     stop_grace_period: 15m30s

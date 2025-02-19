@@ -7,7 +7,7 @@ services:
       APP_PORT: 8100
 
   web:
-    image: oak-node.net/oak:v0.3.4@sha256:b4f218a453a10174492a1b03c66329dff89bdece26c0b024e1bffe9340141048
+    image: oak-node.net/oak:v0.3.8@sha256:226e4b91f753babbf166893dfa044ed80eafd00a13e75033c374bd11824ef961
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m

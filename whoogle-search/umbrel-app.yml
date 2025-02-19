@@ -1,8 +1,8 @@
 manifestVersion: 1
 id: whoogle-search
-category: Networking
+category: networking
 name: Whoogle Search
-version: "0.8.0"
+version: "0.9.3"
 tagline: A self-hosted, ad-free, privacy-respecting metasearch engine
 description: >-
   Get Google search results, but without any ads, javascript, AMP links, 
@@ -67,49 +67,13 @@ gallery:
 path: ""
 defaultUsername: ""
 defaultPassword: ""
-releaseNotes: >
-  Complete overhaul of session management
+releaseNotes: >-
+  This update includes improvements to the user interface and stability:
+    - Fixed styling issues with the Lynx User Agent
+    - Improved Kubernetes deployment support
+    - Various security updates and dependency upgrades
 
-  - Fixed runaway session file creation for public instance maintainers
 
-  - Fixed failure to decrypt subsequent result page queries (i.e. page 2 query appearing as "gAAAAA....")
-
-  
-  Added ability to navigate through results with Tab and Shift+Tab
-
-  
-  Added an "Advanced Search" toggle in search results for quickly switching between countries
-
-  - Can be updated to support other search params, if requested
-
-  
-  Updated filter for sponsored results/advertising content
-
-  
-  Configured language + country is now included in search suggestion requests
-
-  
-  Fixed issues with bolding search terms in result pages
-
-  
-  Added ability to encode configuration in the URL
-
-  
-  Allows jumping between Whoogle instances (via Farside, for example) and maintaining the same configuration settings
-
-  
-  Fixed issues with result links to Google domains
-
-  
-  Reduced the amount of logging the Tor service outputs by default
-
-  
-  New translations:
-
-  - Thai
-
-  - Kurdish
-
-  - Welsh
+  Full release notes are found at https://github.com/benbusby/whoogle-search/compare/v0.9.2...v0.9.3
 submitter: Jasper
 submission: https://github.com/getumbrel/umbrel-apps/pull/117

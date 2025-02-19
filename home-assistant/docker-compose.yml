@@ -1,14 +1,13 @@
 version: "3.7"
 
 services:
-  app_proxy:
-    environment:
-      APP_HOST: home-assistant_server_1
-      APP_PORT: 8123
-      PROXY_AUTH_ADD: "false"
-
   server:
-    image: homeassistant/home-assistant:2023.2.0@sha256:a4a9f614a1edcd414d63decd99813a2ff9910d876db1e04641540a0c75d20918
+    image: homeassistant/home-assistant:2025.2.4@sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf
+    network_mode: host
+    # UI at default port 8123
+    privileged: true
     volumes:
       - ${APP_DATA_DIR}/data:/config
-      - ${APP_DATA_DIR}/configuration.yaml:/config/configuration.yaml
+      - ${UMBREL_ROOT}/data/storage/downloads:/media
+      - /dev:/dev
+      - /run/dbus:/run/dbus:ro

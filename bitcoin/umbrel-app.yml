@@ -1,8 +1,8 @@
 manifestVersion: 1.1
 id: bitcoin
-category: Finance
+category: bitcoin
 name: Bitcoin Node
-version: "24.0.1-2"
+version: "28.1"
 tagline: Run your personal node powered by Bitcoin Core
 description: >-
   Run your Bitcoin node and independently store and validate
@@ -14,6 +14,13 @@ description: >-
 
   Plus, transacting with your own node also helps keep the entire
   Bitcoin network decentralized; win-win!
+
+
+  With over 20 advanced settings, you can take control of your node
+  and customize it to your needs. Control how your node connects to
+  other nodes over Tor, clearnet, and I2P, adjust your daily upload
+  limit, set the maximum mempool size, fine-tune its performance,
+  and much more.
 
 
   Don't trust. Verify. On steroids.
@@ -35,24 +42,43 @@ gallery:
 path: ""
 defaultPassword: ""
 releaseNotes: >-
-  Advanced settings are here!
+  ⚠️ If you are running the Lightning Node app (LND) connected to your Bitcoin Node app, please update Lightning Node to the latest version available in the app store to ensure compatibility.
 
 
-  - Toggle Tor, Clearnet, and I2P for outgoing connections, and enable Mempool Full RBF.
-
-
-  - Enable incoming connections to run a listening node and help others sync their node.
-
-
-  - Switch networks between mainnet, testnet, regtest, and signet.
-
-
-  - Setting up a new node? Speed up your initial sync by increasing the cache size.
-
-
-  - Finally, you can run a pruned node, which allows you to delete old blocks that are not relevant to you to save on storage space.
-
-
-  Note: This update fixes a bug with pruning in the previous 24.0.1 update.
+  Bitcoin Core has been updated to v28.1. See the full Bitcoin Core release notes at https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.1.md
+widgets:
+  - id: "stats"
+    type: "four-stats"
+    refresh: "5s"
+    endpoint: "server:3005/v1/bitcoind/widgets/stats"
+    link: ""
+    example:
+      type: "four-stats"
+      link: ""
+      items:
+        - title: "Connections"
+          text: "11"
+          subtext: "peers"
+        - title: "Mempool"
+          text: "257"
+          subtext: "MB"
+        - title: "Hashrate"
+          text: "590"
+          subtext: "EH/s"
+        - title: "Blockchain size"
+          text: "600"
+          subtext: "GB"
+  - id: "sync"
+    type: "text-with-progress"
+    refresh: "2s"
+    endpoint: "server:3005/v1/bitcoind/widgets/sync"
+    link: ""
+    example:
+      type: "text-with-progress"
+      link: ""
+      title: "Blockchain sync"
+      text: "83%"
+      progressLabel: "In progress"
+      progress: 0.83
 submitter: Umbrel
-submission: https://github.com/getumbrel/umbrel/commit/b0ba869953d024595bac84b8987de34aee561392
+submission: https://github.com/getumbrel/umbrel-apps/commit/576ecd2bef8d625abceed0f67ec9c487da9b2b1b

@@ -1,11 +1,14 @@
-manifestVersion: 1
+manifestVersion: 1.1
 id: immich
-category: Files
+category: files
 name: Immich
-version: "v1.40.1_63-dev"
-tagline: High performance photo and video backup solution
+version: "v1.126.1"
+tagline: High-performance photo and video backup solution
 description: >-
-  An open source and high performance self-hosted backup solution for the videos and photos on your mobile device
+  An open-source and high-performance self-hosted backup solution for the videos and photos on your mobile device
+
+  
+  ⚠️ Immich is under very active development. Expect bugs and changes. Do not use it as the only way to store your photos and videos!
 
   
   Features:
@@ -16,7 +19,7 @@ description: >-
   
   - Selective album(s) for backup
   
-  - Download photos and videos to local device
+  - Download photos and videos to a local device
   
   - Multi-user support
   
@@ -41,7 +44,19 @@ description: >-
   - LivePhoto backup and playback
   
   - User-defined storage structure
-releaseNotes: ""
+releaseNotes: >-
+  ⚠️ As usual, please check that your mobile app is compatible with this release of Immich.
+
+
+  Key improvements in this release:
+    - Added search by tags and descriptions
+    - Revamped places interface on the web
+    - Added ability to mark people as favorites
+    - Improved shared link interface and filtering
+    - Added new features to album sharing
+    - Various bug fixes and performance improvements
+
+  Full release notes are found at https://github.com/immich-app/immich/releases
 developer: Alex Tran
 website: https://www.immich.app
 dependencies: []
