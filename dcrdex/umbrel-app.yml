@@ -5,7 +5,7 @@ name: Bison Wallet
 version: "1.0.5"
 tagline: Multi-asset cryptocurrency wallet with integrated DEX
 description: >-
-  Bison Wallet is a multi-asset, non-custodial cryptocurrency wallet with a built-in decentralized exchange (DCRDEX).
+  Bison Wallet is a multi-asset, non-custodial cryptocurrency wallet with a built-in decentralized exchange.
 
 
   Trade Bitcoin, USDC, Ethereum, Decred, Dogecoin, Zcash and more peer-to-peer using atomic swaps.
